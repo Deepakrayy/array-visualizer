@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# Array Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive React + TypeScript app for exploring sorting behavior with draggable arrays, live stats, and algorithm code views.
 
-Currently, two official plugins are available:
+## Why the previous diff showed `-64`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The prior commit **replaced** the default Vite README instead of editing it in place, so Git counted most of the template text as deletions.  
+If you want a smaller deletion count, keep useful template sections and add project-specific sections on top.
+
+## Tech stack
+
+- React 19 + Vite 7
+- TypeScript
+- Zustand for state management
+- Tailwind CSS 4 + Radix UI primitives
+- dnd-kit for drag-and-drop array interactions
+
+## Getting started
+
+```bash
+npm install
+npm run dev
+```
+
+Open the printed local URL (usually `http://localhost:5173`).
+
+## Available scripts
+
+- `npm run dev` — start the development server
+- `npm run build` — type-check and build for production
+- `npm run lint` — run ESLint
+- `npm run preview` — preview the production build
+
+## Vite + React plugin notes
+
+This project uses Vite with the React plugin ecosystem. Common plugin options:
+
+- `@vitejs/plugin-react` (Babel-based Fast Refresh)
+- `@vitejs/plugin-react-swc` (SWC-based Fast Refresh)
 
 ## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React Compiler is not enabled by default. See the official React docs if you want to opt in:
 
-## Expanding the ESLint configuration
+- https://react.dev/learn/react-compiler/installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ESLint type-aware configuration (optional)
+
+For stricter production linting, you can switch from baseline recommended rules to type-aware rules.
 
 ```js
-export default defineConfig([
-  globalIgnores(['dist']),
+// eslint.config.js (example)
+import tseslint from 'typescript-eslint'
+
+export default tseslint.config(
+  tseslint.configs.recommendedTypeChecked,
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
       },
-      // other options...
     },
   },
-])
+)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Notes for reducing noisy PR stats
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Prefer **editing sections** instead of replacing entire files.
+- Keep reusable starter guidance if it still applies.
+- Split docs work into small commits so reviewers can follow intent.
